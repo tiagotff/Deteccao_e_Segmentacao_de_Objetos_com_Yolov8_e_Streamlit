@@ -10,10 +10,6 @@ Este app está em desenvolvimento na Cloud do Streamlit, no entanto, você pode 
 
 ## Imagem demonstrativa da solução
 
-<img src="https://github.com/CodingMantras/yolov8-streamlit-detection-tracking/blob/master/assets/pic1.png" >
-
-### Page after uploading an image and object detection
-
-<img src="https://github.com/CodingMantras/yolov8-streamlit-detection-tracking/blob/master/assets/pic3.png" >
+<img src="https://github.com/tiagotff/Deteccao_e_segmentacao_de_objetos_com_yolov8_e_streamlit/blob/main/pic1.JPG" >
 
 
