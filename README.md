@@ -8,9 +8,7 @@ Este app está em desenvolvimento na Cloud do Streamlit, no entanto, você pode 
 
 [Detecção e rastreamento de objetos em tempo real com YOLOv8 e Streamlit](https://www.linkedin.com/posts/tiagofaustino91_yolov8-visaetocomputacional-inovaaexaeto-activity-7176061523184730113-cFUZ?utm_source=share&utm_medium=member_desktop)
 
-## Imagem demonstrativa
-
-### Home page
+## Imagem demonstrativa da solução
 
 <img src="https://github.com/CodingMantras/yolov8-streamlit-detection-tracking/blob/master/assets/pic1.png" >
 
