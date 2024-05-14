@@ -9,20 +9,21 @@ import settings
 
 def load_model(model_path):
     """
-    Loads a YOLO object detection model from the specified model_path.
+    Carrega um modelo de detecção de objeto YOLO do model_path especificado.
 
-    Parameters:
-        model_path (str): The path to the YOLO model file.
+    Parâmetros:
+        model_path (str): O caminho para o arquivo de modelo YOLO.
 
-    Returns:
-        A YOLO object detection model.
+    Retorna:
+        Um modelo de detecção de objetos YOLO.
     """
+
     model = YOLO(model_path)
     return model
 
 
 def display_tracker_options():
-    display_tracker = st.radio("Display Tracker", ('Yes', 'No'))
+    display_tracker = st.radio("Exibe o tracker", ('Sim', 'Não'))
     is_display_tracker = True if display_tracker == 'Yes' else False
     if is_display_tracker:
         tracker_type = st.radio("Tracker", ("bytetrack.yaml", "botsort.yaml"))
@@ -32,33 +33,33 @@ def display_tracker_options():
 
 def _display_detected_frames(conf, model, st_frame, image, is_display_tracking=None, tracker=None):
     """
-    Display the detected objects on a video frame using the YOLOv8 model.
+    Exiba os objetos detectados em um vídeo usando o modelo YOLOv8.
 
-    Args:
-    - conf (float): Confidence threshold for object detection.
-    - model (YoloV8): A YOLOv8 object detection model.
-    - st_frame (Streamlit object): A Streamlit object to display the detected video.
-    - image (numpy array): A numpy array representing the video frame.
-    - is_display_tracking (bool): A flag indicating whether to display object tracking (default=None).
+    Argumentos:
+    - conf (float): Limite de confiança para detecção de objetos.
+    - modelo (YoloV8): Um modelo de detecção de objetos YOLOv8.
+    - st_frame (objeto Streamlit): Um objeto Streamlit para exibir o vídeo detectado.
+    - imagem (matriz numpy): Uma matriz numpy que representa o quadro do vídeo.
+    - is_display_tracking (bool): Um sinalizador que indica se o rastreamento de objetos deve ser exibido (padrão=Nenhum).
 
-    Returns:
-    None
+    Retorna:
+    Nenhum
     """
 
-    # Resize the image to a standard size
+    # Redimensione a imagem para um tamanho padrão
     image = cv2.resize(image, (720, int(720*(9/16))))
 
-    # Display object tracking, if specified
+    # Exibe o rastreamento de objetos, se especificado
     if is_display_tracking:
         res = model.track(image, conf=conf, persist=True, tracker=tracker)
     else:
-        # Predict the objects in the image using the YOLOv8 model
+        # Preveja os objetos na imagem usando o modelo YOLOv8
         res = model.predict(image, conf=conf)
 
-    # # Plot the detected objects on the video frame
+    ## Plote os objetos detectados no vídeo
     res_plotted = res[0].plot()
     st_frame.image(res_plotted,
-                   caption='Detected Video',
+                   caption='Vídeo detectado',
                    channels="BGR",
                    use_column_width=True
                    )
@@ -66,19 +67,16 @@ def _display_detected_frames(conf, model, st_frame, image, is_display_tracking=N
 
 def play_youtube_video(conf, model):
     """
-    Plays a webcam stream. Detects Objects in real-time using the YOLOv8 object detection model.
+    Reproduz um stream de webcam. Detecta objetos em tempo real usando o modelo de detecção de objetos YOLOv8.
 
-    Parameters:
-        conf: Confidence of YOLOv8 model.
-        model: An instance of the `YOLOv8` class containing the YOLOv8 model.
+    Parâmetros:
+        conf: Confiança do modelo YOLOv8.
+        modelo: uma instância da classe `YOLOv8` contendo o modelo YOLOv8.
 
-    Returns:
-        None
-
-    Raises:
-        None
+    Retorna:
+        Nenhum
     """
-    source_youtube = st.sidebar.text_input("YouTube Video url")
+    source_youtube = st.sidebar.text_input("URL Vídeo YouTube")
 
     is_display_tracker, tracker = display_tracker_options()
 
@@ -108,17 +106,14 @@ def play_youtube_video(conf, model):
 
 def play_rtsp_stream(conf, model):
     """
-    Plays an rtsp stream. Detects Objects in real-time using the YOLOv8 object detection model.
+    Reproduz um stream rtsp. Detecta objetos em tempo real usando o modelo de detecção de objetos YOLOv8.
 
-    Parameters:
-        conf: Confidence of YOLOv8 model.
-        model: An instance of the `YOLOv8` class containing the YOLOv8 model.
+    Parâmetros:
+        conf: Confiança do modelo YOLOv8.
+        modelo: uma instância da classe `YOLOv8` contendo o modelo YOLOv8.
 
-    Returns:
-        None
-
-    Raises:
-        None
+    Retorna:
+        Nenhum
     """
     source_rtsp = st.sidebar.text_input("rtsp stream url:")
     st.sidebar.caption('Example URL: rtsp://admin:12345@192.168.1.210:554/Streaming/Channels/101')
@@ -145,22 +140,19 @@ def play_rtsp_stream(conf, model):
                     break
         except Exception as e:
             vid_cap.release()
-            st.sidebar.error("Error loading RTSP stream: " + str(e))
+            st.sidebar.error("Erro ao carregar o fluxo RTSP: " + str(e))
 
 
 def play_webcam(conf, model):
-    """
-    Plays a webcam stream. Detects Objects in real-time using the YOLOv8 object detection model.
+   """
+    Reproduz um stream de webcam. Detecta objetos em tempo real usando o modelo de detecção de objetos YOLOv8.
 
-    Parameters:
-        conf: Confidence of YOLOv8 model.
-        model: An instance of the `YOLOv8` class containing the YOLOv8 model.
+    Parâmetros:
+        conf: Confiança do modelo YOLOv8.
+        modelo: uma instância da classe `YOLOv8` contendo o modelo YOLOv8.
 
-    Returns:
-        None
-
-    Raises:
-        None
+    Retorna:
+        Nenhum
     """
     source_webcam = settings.WEBCAM_PATH
     is_display_tracker, tracker = display_tracker_options()
@@ -182,25 +174,22 @@ def play_webcam(conf, model):
                     vid_cap.release()
                     break
         except Exception as e:
-            st.sidebar.error("Error loading video: " + str(e))
+            st.sidebar.error("Erro carregando video: " + str(e))
 
 
 def play_stored_video(conf, model):
     """
-    Plays a stored video file. Tracks and detects objects in real-time using the YOLOv8 object detection model.
+    Reproduz um arquivo de vídeo armazenado. Rastreia e detecta objetos em tempo real usando o modelo de detecção de objetos YOLOv8.
 
-    Parameters:
-        conf: Confidence of YOLOv8 model.
-        model: An instance of the `YOLOv8` class containing the YOLOv8 model.
+    Parâmetros:
+        conf: Confiança do modelo YOLOv8.
+        modelo: uma instância da classe `YOLOv8` contendo o modelo YOLOv8.
 
-    Returns:
-        None
-
-    Raises:
-        None
+    Retorna:
+        Nenhum
     """
     source_vid = st.sidebar.selectbox(
-        "Choose a video...", settings.VIDEOS_DICT.keys())
+        "Escolha um video...", settings.VIDEOS_DICT.keys())
 
     is_display_tracker, tracker = display_tracker_options()
 
@@ -228,4 +217,4 @@ def play_stored_video(conf, model):
                     vid_cap.release()
                     break
         except Exception as e:
-            st.sidebar.error("Error loading video: " + str(e))
+            st.sidebar.error("Erro carregando video: " + str(e))
