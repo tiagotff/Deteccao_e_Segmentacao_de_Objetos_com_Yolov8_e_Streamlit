@@ -116,7 +116,7 @@ def play_rtsp_stream(conf, model):
         Nenhum
     """
     source_rtsp = st.sidebar.text_input("rtsp stream url:")
-    st.sidebar.caption('Example URL: rtsp://admin:12345@192.168.1.210:554/Streaming/Channels/101')
+    st.sidebar.caption('URL de exemplo: rtsp://admin:12345@192.168.1.210:554/Streaming/Channels/101')
     is_display_tracker, tracker = display_tracker_options()
     if st.sidebar.button('Detectar Objetos'):
         try:
