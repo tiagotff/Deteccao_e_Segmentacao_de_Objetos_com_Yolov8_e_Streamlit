@@ -1,20 +1,20 @@
 from pathlib import Path
 import sys
 
-# Get the absolute path of the current file
+# Obtém o caminho absoluto do arquivo atual
 file_path = Path(__file__).resolve()
 
-# Get the parent directory of the current file
+# Obtém o diretório pai do arquivo atual
 root_path = file_path.parent
 
-# Add the root path to the sys.path list if it is not already there
+# Adicione o caminho raiz à lista sys.path se ainda não estiver lá
 if root_path not in sys.path:
     sys.path.append(str(root_path))
 
-# Get the relative path of the root directory with respect to the current working directory
+# Obtém o caminho relativo do diretório raiz em relação ao diretório de trabalho atual
 ROOT = root_path.relative_to(Path.cwd())
 
-# Sources
+# Fontes
 IMAGE = 'Imagem'
 VIDEO = 'Vídeo'
 WEBCAM = 'Webcam'
@@ -42,9 +42,9 @@ VIDEOS_DICT = {
 # Configuração do Modelo ML
 MODEL_DIR = ROOT / 'weights'
 DETECTION_MODEL = MODEL_DIR / 'yolov8n.pt'
-# In case of your custome model comment out the line above and
-# Place your custom model pt file name at the line below 
-# DETECTION_MODEL = MODEL_DIR / 'my_detection_model.pt'
+# No caso do seu modelo personalizado comente a linha acima e
+# Coloque o nome do arquivo pt do seu modelo personalizado na linha abaixo
+# DETECTION_MODEL = MODEL_DIR / 'meu_modelo_detecção.pt'
 
 SEGMENTATION_MODEL = MODEL_DIR / 'yolov8n-seg.pt'
 
