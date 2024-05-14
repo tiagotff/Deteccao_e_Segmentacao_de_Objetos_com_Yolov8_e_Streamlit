@@ -1,6 +1,6 @@
 # Detecção e rastreamento de objetos em tempo real com YOLOv8 e Streamlit
 
-Este repositório é um projeto abrangente de código aberto que demonstra a integração de detecção e rastreamento de objetos usando o algoritmo de detecção de objetos YOLOv8 e Streamlit, uma estrutura de aplicativo da web Python popular para a construção de aplicativos da web interativos. Este projeto fornece uma interface amigável e personalizável que pode detectar e rastrear objetos em fluxos de vídeo em tempo real.
+Este repositório demonstra a integração de detecção e rastreamento de objetos usando o algoritmo de detecção de objetos YOLOv8 e Streamlit, uma estrutura de aplicativo da web Python popular para a construção de aplicativos da web interativos. Este projeto fornece uma interface amigável e personalizável que pode detectar e rastrear objetos em fluxos de vídeo em tempo real.
 
 ## Demo WebApp
 
