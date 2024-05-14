@@ -1,6 +1,6 @@
 # Pacotes embutidos
 from pathlib import Path
-import PIL
+#import PIL
 
 # Pacotes externos
 import streamlit as st
