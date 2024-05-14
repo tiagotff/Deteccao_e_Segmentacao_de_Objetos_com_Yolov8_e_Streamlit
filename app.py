@@ -1,46 +1,46 @@
-# Python In-built packages
+# Pacotes embutidos
 from pathlib import Path
 import PIL
 
-# External packages
+# Pacotes externos
 import streamlit as st
 
-# Local Modules
+# Módulos Locais
 import settings
 import helper
 
-# Setting page layout
+#Configurando o layout da página
 st.set_page_config(
-    page_title="Detecção/Segmentação de Objetos utilizando YOLOv8",
+    page_title="Detecção e rastreamento de objetos em tempo real com YOLOv8 e Streamlit",
     page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Main page heading
-st.title("Detecção/Segmentação de Objetos utilizando YOLOv8")
+# Título da página principal
+st.title("Detecção e rastreamento de objetos em tempo real com YOLOv8 e Streamlit")
 
 # Sidebar
 st.sidebar.header("Configuração do Modelo ML")
 
-# Model Options
+# Opções de modelo
 model_type = st.sidebar.radio(
     "Selecione a Tarefa", ['Detecção', 'Segmentação'])
 
 confidence = float(st.sidebar.slider(
     "Selecione a Confiança do Modelo", 25, 100, 40)) / 100
 
-# Selecting Detection Or Segmentation
+# Selecionando detecção ou segmentação
 if model_type == 'Detecção':
     model_path = Path(settings.DETECTION_MODEL)
 elif model_type == 'Segmentação':
     model_path = Path(settings.SEGMENTATION_MODEL)
 
-# Load Pre-trained ML Model
+# Carregar modelo de ML pré-treinado
 try:
     model = helper.load_model(model_path)
 except Exception as ex:
-    st.error(f"Unable to load model. Check the specified path: {model_path}")
+    st.error(f"Não foi possível carregar o modelo. Verifique o caminho especificado: {model_path}")
     st.error(ex)
 
 st.sidebar.header("Conf. Imagem/Vídeo")
@@ -67,7 +67,7 @@ if source_radio == settings.IMAGE:
                 st.image(source_img, caption="Uploaded Image",
                          use_column_width=True)
         except Exception as ex:
-            st.error("Error occurred while opening the image.")
+            st.error("Ocorreu um erro ao abrir a imagem.")
             st.error(ex)
 
     with col2:
@@ -92,7 +92,7 @@ if source_radio == settings.IMAGE:
                             st.write(box.data)
                 except Exception as ex:
                     # st.write(ex)
-                    st.write("No image is uploaded yet!")
+                    st.write("Nenhuma imagem foi carregada ainda!")
 
 elif source_radio == settings.VIDEO:
     helper.play_stored_video(confidence, model)
@@ -107,4 +107,4 @@ elif source_radio == settings.YOUTUBE:
     helper.play_youtube_video(confidence, model)
 
 else:
-    st.error("Please select a valid source type!")
+    st.error("Selecione um tipo de fonte válido!")
