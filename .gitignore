@@ -1,12 +1,12 @@
-# Byte-compiled / optimized / DLL files
+# Arquivos compilados/otimizados/DLL em bytes
 __pycache__/
 *.py[cod]
 *$py.class
 
-# C extensions
+# Extensões C
 *.so
 
-# Local folder
+# Pasta local
 local_folder
 project_demo
 project_demo/
@@ -17,7 +17,7 @@ demo.py
 runs/
 
 
-# Distribution / packaging
+# Distribuição / packaging
 .Python
 build/
 develop-eggs/
@@ -36,11 +36,12 @@ share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+
 MANIFEST
 
 # PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+# Geralmente esses arquivos são escritos por um script python a partir de um modelo
+# antes do PyInstaller construir o exe, para injetar data/outras informações nele.
 *.manifest
 *.spec
 
@@ -50,7 +51,7 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Unit test / coverage reports
+# Relatórios de teste/cobertura de unidade
 htmlcov/
 .tox/
 .nox/
@@ -64,7 +65,7 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 
-# Translations
+# Traduções
 *.mo
 *.pot
 
@@ -81,7 +82,7 @@ instance/
 # Scrapy stuff:
 .scrapy
 
-# Sphinx documentation
+# Sphinx - documentação
 docs/_build/
 
 # PyBuilder
@@ -98,10 +99,10 @@ ipython_config.py
 .python-version
 
 # pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
+# De acordo com pypa/pipenv#598, é recomendado incluir Pipfile.lock no controle de versão.
+# No entanto, em caso de colaboração, se houver dependências ou dependências específicas da plataforma
+# não tendo suporte multiplataforma, o pipenv pode instalar dependências que não funcionam ou não
+# instale todas as dependências necessárias.
 #Pipfile.lock
 
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow
@@ -131,7 +132,7 @@ venv.bak/
 # Rope project settings
 .ropeproject
 
-# mkdocs documentation
+# mkdocs documentação
 /site
 
 # mypy
